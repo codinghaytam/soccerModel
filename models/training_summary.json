@@ -1,0 +1,53 @@
+{
+  "corner": {
+    "epochs": 150,
+    "mean_frame_loss": 1.5090647564222877,
+    "classification_accuracy": 0.040293040293040296
+  },
+  "foul": {
+    "epochs": 150,
+    "mean_frame_loss": 1.5729019560541877,
+    "classification_accuracy": 0.25339366515837103
+  },
+  "freekick": {
+    "epochs": 150,
+    "mean_frame_loss": 0.9151397066767406,
+    "classification_accuracy": 0.03333333333333333
+  },
+  "goalkick": {
+    "epochs": 150,
+    "mean_frame_loss": 1.069206697216597,
+    "classification_accuracy": 0.49645390070921985
+  },
+  "longpass": {
+    "epochs": 150,
+    "mean_frame_loss": 1.0396294018692096,
+    "classification_accuracy": 0.1762295081967213
+  },
+  "ontarget": {
+    "epochs": 150,
+    "mean_frame_loss": 1.0707459525613758,
+    "classification_accuracy": 0.0
+  },
+  "penalty": {
+    "epochs": 150,
+    "mean_frame_loss": 0.8939925296468069,
+    "classification_accuracy": 0.4069264069264069
+  },
+  "shortpass": {
+    "epochs": 150,
+    "mean_frame_loss": 0.994250389261398,
+    "classification_accuracy": 0.0
+  },
+  "substitution": {
+    "epochs": 150,
+    "mean_frame_loss": 2.5497663594850173,
+    "classification_accuracy": 0.6090909090909091
+  },
+  "throw-in": {
+    "epochs": 150,
+    "mean_frame_loss": 2.011735386197201,
+    "classification_accuracy": 0.37668161434977576
+  },
+  "overall_accuracy": 0.27991169977924946
+}

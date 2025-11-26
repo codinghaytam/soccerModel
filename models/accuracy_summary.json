@@ -1,0 +1,150 @@
+{
+  "labels": [
+    "corner",
+    "foul",
+    "freekick",
+    "goalkick",
+    "longpass",
+    "ontarget",
+    "penalty",
+    "shortpass",
+    "substitution",
+    "throw-in"
+  ],
+  "overall_accuracy": 0.27991169977924946,
+  "per_label_accuracy": {
+    "corner": 0.040293040293040296,
+    "foul": 0.25339366515837103,
+    "freekick": 0.03333333333333333,
+    "goalkick": 0.49645390070921985,
+    "longpass": 0.1762295081967213,
+    "ontarget": 0.0,
+    "penalty": 0.4069264069264069,
+    "shortpass": 0.0,
+    "substitution": 0.6090909090909091,
+    "throw-in": 0.37668161434977576
+  },
+  "confusion_matrix": {
+    "corner": {
+      "corner": 11,
+      "foul": 4,
+      "freekick": 8,
+      "goalkick": 117,
+      "longpass": 28,
+      "ontarget": 0,
+      "penalty": 55,
+      "shortpass": 0,
+      "substitution": 36,
+      "throw-in": 14
+    },
+    "foul": {
+      "corner": 5,
+      "foul": 56,
+      "freekick": 9,
+      "goalkick": 57,
+      "longpass": 18,
+      "ontarget": 0,
+      "penalty": 52,
+      "shortpass": 0,
+      "substitution": 16,
+      "throw-in": 8
+    },
+    "freekick": {
+      "corner": 1,
+      "foul": 14,
+      "freekick": 5,
+      "goalkick": 70,
+      "longpass": 6,
+      "ontarget": 0,
+      "penalty": 46,
+      "shortpass": 0,
+      "substitution": 2,
+      "throw-in": 6
+    },
+    "goalkick": {
+      "corner": 2,
+      "foul": 4,
+      "freekick": 4,
+      "goalkick": 140,
+      "longpass": 27,
+      "ontarget": 0,
+      "penalty": 81,
+      "shortpass": 0,
+      "substitution": 23,
+      "throw-in": 1
+    },
+    "longpass": {
+      "corner": 13,
+      "foul": 13,
+      "freekick": 12,
+      "goalkick": 89,
+      "longpass": 43,
+      "ontarget": 0,
+      "penalty": 45,
+      "shortpass": 0,
+      "substitution": 10,
+      "throw-in": 19
+    },
+    "ontarget": {
+      "corner": 7,
+      "foul": 23,
+      "freekick": 7,
+      "goalkick": 62,
+      "longpass": 5,
+      "ontarget": 0,
+      "penalty": 50,
+      "shortpass": 0,
+      "substitution": 8,
+      "throw-in": 11
+    },
+    "penalty": {
+      "corner": 6,
+      "foul": 19,
+      "freekick": 3,
+      "goalkick": 82,
+      "longpass": 13,
+      "ontarget": 0,
+      "penalty": 94,
+      "shortpass": 0,
+      "substitution": 6,
+      "throw-in": 8
+    },
+    "shortpass": {
+      "corner": 2,
+      "foul": 5,
+      "freekick": 9,
+      "goalkick": 37,
+      "longpass": 23,
+      "ontarget": 0,
+      "penalty": 51,
+      "shortpass": 0,
+      "substitution": 8,
+      "throw-in": 3
+    },
+    "substitution": {
+      "corner": 14,
+      "foul": 18,
+      "freekick": 18,
+      "goalkick": 30,
+      "longpass": 2,
+      "ontarget": 0,
+      "penalty": 4,
+      "shortpass": 5,
+      "substitution": 201,
+      "throw-in": 38
+    },
+    "throw-in": {
+      "corner": 6,
+      "foul": 20,
+      "freekick": 2,
+      "goalkick": 31,
+      "longpass": 7,
+      "ontarget": 0,
+      "penalty": 19,
+      "shortpass": 0,
+      "substitution": 54,
+      "throw-in": 84
+    }
+  },
+  "num_samples_evaluated": 2265
+}
