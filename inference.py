@@ -1,25 +1,4 @@
-"""Unified inference script for skeleton-based models.
 
-Usage examples:
-
-  python inference.py --video path/to/video.mp4 --label corner
-  python inference.py --video path/to/video.mp4  # classify with GMMs
-
-Steps:
-  1. Extract keypoints from the input video (placeholder function).
-  2. Build a (T, J, 3) numpy array of skeleton coordinates.
-  3. If --label provided:
-        - Load that label's autoencoder and compute per-frame & per-joint reconstruction error.
-        - Load its GMM (if exists) and compute log-likelihood + anomaly score.
-     Else:
-        - Classify the sequence using all GMMs (highest log-likelihood).
-        - Also pick the autoencoder with lowest reconstruction error (if all available).
-
-Outputs printed as JSON.
-
-You must implement `extract_keypoints_from_video` to use a real pose estimation pipeline
-(e.g. using MediaPipe, OpenPose, YOLO+pose, etc.). Currently it raises NotImplementedError.
-"""
 from __future__ import annotations
 import os
 import json
@@ -28,7 +7,8 @@ from typing import List, Dict
 import numpy as np
 import torch
 from sklearn.mixture import GaussianMixture
-
+import torch
+from transformers import AutoTokenizer, AutoModelForCausalLM, GenerationConfig
 # Paths
 BASE_DIR = os.path.dirname(__file__)
 DATA_DIR = os.path.join(BASE_DIR, "data")
@@ -40,12 +20,7 @@ VIDEO_PATH = os.path.join(DATA_DIR, 'C:\\Users\\ULTRA PC\\PycharmProjects\\Pytho
 # ---------------- Placeholder keypoint extraction -----------------
 
 def extract_keypoints_from_video(video_path: str) -> np.ndarray:
-    """Return skeleton coords with shape (T, J, 3) for the given video.
 
-    This implementation derives the video identifier from the filename and
-    looks it up inside data/keypoints.json (array or NDJSON of frame records).
-    The identifier is the basename without extension (e.g. corner_0001 from corner_0001.mp4).
-    """
     vid_id = os.path.splitext(os.path.basename(video_path))[0]
     json_path = os.path.join(DATA_DIR, "keypoints.json")
     if not os.path.exists(json_path):
@@ -304,6 +279,21 @@ def autoencoder_best(coords: np.ndarray) -> Dict:
     best = sorted(errs.items(), key=lambda kv: kv[1])[0]
     return {"errors": errs, "predicted_label": best[0], "best_mse": best[1]}
 
+def passToLLM(prompt: str) -> str:
+    model_name = "deepseek-ai/deepseek-llm-7b-chat"
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.bfloat16, device_map="auto")
+    model.generation_config = GenerationConfig.from_pretrained(model_name)
+    model.generation_config.pad_token_id = model.generation_config.eos_token_id
+
+    messages = [
+        {"role": "user", "content": "prompt"}
+    ]
+    input_tensor = tokenizer.apply_chat_template(messages, add_generation_prompt=True, return_tensors="pt")
+    outputs = model.generate(input_tensor.to(model.device), max_new_tokens=10000)
+
+    result = tokenizer.decode(outputs[0][input_tensor.shape[1]:], skip_special_tokens=True)
+    return result
 # --------------- Main CLI ---------------
 
 def main():
